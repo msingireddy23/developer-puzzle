@@ -1,15 +1,17 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { NgModule } from '@angular/core';
 import {
   MatFormFieldModule,
   MatInputModule,
   MatSelectModule,
-  MatButtonModule
+  MatButtonModule,
+  MatNativeDateModule,
+  MatDatepickerModule
 } from '@angular/material';
 import { RouterModule } from '@angular/router';
 import { SharedUiChartModule } from '@coding-challenge/shared/ui/chart';
 import { StocksComponent } from './stocks/stocks.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
@@ -22,8 +24,12 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatInputModule,
     MatSelectModule,
     MatButtonModule,
-    SharedUiChartModule
+    SharedUiChartModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    FormsModule
   ],
-  declarations: [StocksComponent]
+  declarations: [StocksComponent],
+  providers: [MatDatepickerModule, DatePipe]
 })
 export class StocksFeatureShellModule {}

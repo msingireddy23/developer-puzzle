@@ -52,7 +52,8 @@
               "apps/stocks/src/assets"
             ],
             "styles": [
-              "apps/stocks/src/styles.css"
+              "apps/stocks/src/styles.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
             "scripts": [],
             "es5BrowserSupport": true

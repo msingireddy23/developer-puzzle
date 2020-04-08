@@ -22,10 +22,11 @@ export class PriceQueryEffects {
     PriceQueryActionTypes.FetchPriceQuery,
     {
       run: (action: FetchPriceQuery, state: PriceQueryPartialState) => {
-        return this.httpClient
+        const query = action.fromDate && action.toDate ? `from=${action.fromDate}&to=${action.toDate}`: action.period;
+       return this.httpClient
           .get(
             `${this.env.apiURL}/beta/stock/${action.symbol}/chart/${
-              action.period
+              query
             }?token=${this.env.apiKey}`
           )
           .pipe(

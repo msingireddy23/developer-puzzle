@@ -1,3 +1,4 @@
+<div class="container m-5">
 <form [formGroup]="stockPickerForm">
   <mat-form-field>
     <input
@@ -28,10 +29,23 @@
       </mat-option>
     </mat-select>
   </mat-form-field>
-
-  <button (click)="fetchQuote()" mat-raised-button>Go</button>
+  <div class="mt-5">Custom time period</div>
+  <mat-form-field>
+    <mat-label>From</mat-label>
+    <input matInput [max]="maxDate" formControlName="fromDate" [matDatepicker]="myDatepickerFrom">
+    <mat-datepicker-toggle matSuffix [for]="myDatepickerFrom"></mat-datepicker-toggle>
+    <mat-datepicker #myDatepickerFrom></mat-datepicker>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>To</mat-label>
+    <input matInput [min]="stockPickerForm.controls['fromDate'].value" [max]="maxDate" formControlName="toDate" [matDatepicker]="myDatepickerTo">
+    <mat-datepicker-toggle matSuffix [for]="myDatepickerTo"></mat-datepicker-toggle>
+    <mat-datepicker #myDatepickerTo></mat-datepicker>
+  </mat-form-field>
+  <button class="btn-primary" (click)="fetchQuote()" mat-raised-button>Go</button>
 </form>
 <div *ngIf="apiError; else elseBlock"><h1>{{apiError}}</h1></div>
 <ng-template #elseBlock>
   <coding-challenge-chart  [data$]="quotes$"></coding-challenge-chart>
 </ng-template>
+</div>
