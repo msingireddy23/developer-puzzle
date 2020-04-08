@@ -11,6 +11,7 @@ export class StocksComponent implements OnInit {
   stockPickerForm: FormGroup;
   symbol: string;
   period: string;
+  apiError: string = null;
 
   quotes$ = this.priceQuery.priceQueries$;
 
@@ -38,6 +39,7 @@ export class StocksComponent implements OnInit {
     if (this.stockPickerForm.valid) {
       const { symbol, period } = this.stockPickerForm.value;
       this.priceQuery.fetchQuote(symbol, period);
+      this.priceQuery.selectedSymbol$.subscribe(value => value.toLowerCase() === 'unknown symbol' ? this.apiError = value : null);
     }
   }
 }
